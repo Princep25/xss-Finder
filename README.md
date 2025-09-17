@@ -1,0 +1,1 @@
+This repository contains two files one is a vulnerable page made vulnerable to XSS(cross site scripting) which is an html page(for testing purposes) and .sh file is the tool for xss testing which can be used to perform test to find xss vulnerability by using some of the default payloads. 
