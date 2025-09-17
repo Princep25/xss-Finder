@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>XSS Tester</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    input {
+      width: 80%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .output {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: #f1f1f1;
+      border-radius: 8px;
+      min-height: 50px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>XSS Vulnerability Tester</h2>
+    <p>Type a payload below and click <b>Test</b></p>
+
+    <input type="text" id="payload" placeholder="Enter your XSS payload here">
+    <br>
+    <button onclick="runPayload()">Test</button>
+
+    <div class="output" id="output">Output will appear here...</div>
+  </div>
+
+  <script>
+    function runPayload() {
+      let payload = document.getElementById("payload").value;
+      if (payload) {
+        // Vulnerable: writes user input directly
+        document.write(payload);
+      }
+    }
+
+    // Also check if URL param q is present (for auto-testing)
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get("q");
+    if (q) {
+      document.write(q);
+    }
+  </script>
+</body>
+</html>
